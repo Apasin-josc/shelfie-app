@@ -1,17 +1,19 @@
-//represents the home page
-//rncs
 import { StyleSheet, Text, View, Image } from 'react-native'
+import { Link } from 'expo-router'
 import Logo from '../assets/img/logo_light.png'
 
 const Home = () => {
     return (
         <View style={styles.container}>
             <Image source={Logo} style={styles.img} />
-            <Text style={[styles.title, { color: 'purple' }]}>Home</Text>
+            <Text style={styles.title}>Home</Text>
             <Text style={{ marginTop: 10, marginBottom: 30 }}> Hello World </Text>
-            <View style={styles.card}>
-                <Text> Hello, this is a card</Text>
-            </View>
+            <Link style={styles.link} href="/about">
+                About Page
+            </Link>
+            <Link style={styles.link} href="/contact">
+                Contact Page
+            </Link>
         </View>
 
 
@@ -33,10 +35,8 @@ const styles = StyleSheet.create({
     img: {
         marginVertical: 20,
     },
-    card: {
-        backgroundColor: '#eee',
-        padding: 20,
-        borderRadius: 5,
-        boxShadow: '4px 4px rgba(0,0,0,0.1)'
+    link: {
+        marginVertical: 10,
+        borderBottomWidth: 1
     }
 })
