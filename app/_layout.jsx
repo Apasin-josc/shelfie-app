@@ -1,16 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import { Slot, Stack } from 'expo-router'
+import { Colors } from '../constants/Colors'
+import { StatusBar } from 'expo-status-bar'
 
 const RootLayout = () => {
+    const colorScheme = useColorScheme()
+    const theme = Colors[colorScheme] ?? Colors.light /* if whatever reason there's a null we fallback to the light theme */
+
     return (
-        <Stack screenOptions={{
-            headerStyle: { backgroundColor: '#ddd' },
-            headerTintColor: '#333',
-        }}>
-            <Stack.Screen name="index" options={{ title: 'Home' }} />
-            <Stack.Screen name="about" options={{ title: 'About' }} />
-            <Stack.Screen name="contact" options={{ title: 'Contact', headerShown: false }} />
-        </Stack>
+        <>
+            <StatusBar value="auto" />
+            <Stack screenOptions={{
+                headerStyle: { backgroundColor: theme.navBackground },
+                headerTintColor: theme.title,
+            }}>
+                <Stack.Screen name="index" options={{ title: 'Home' }} />
+                <Stack.Screen name="about" options={{ title: 'About' }} />
+                <Stack.Screen name="contact" options={{ title: 'Contact', headerShown: false }} />
+            </Stack>
+        </>
     )
 }
 
